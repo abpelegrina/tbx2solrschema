@@ -26,7 +26,7 @@ bin/post -c [CORE_NAME] [NEW FILE].xml
 ```
 
 ## Supporting new languages
-To add new languages to the output file, you have to add a new selector to the match your desired language. For example, to extract french terms:
+To add new languages to the output file, you have to add a new selector that matches your desired language. For example, to extract french terms:
 
 ```xslt
 <xsl:for-each select="langSet[@xml:lang='fr']">
