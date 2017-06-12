@@ -22,11 +22,25 @@ The schema of the output file is:
 ## Usage
 * Create the XML file:
 ```sh
-> java -jar xalan.jar  -IN [TBX-FILE] -XSL glossary.xsl -OUT [NEW FILE].xml
+$ java -jar xalan.jar  -IN <TBX-FILE> -XSL glossary.xsl -OUT <NEW FILE>.xml
+```
+* Create a new Solr core and add the appropiate fields to the schema file
+
+```sh
+$ bin/solr create -c <CORE_NAME>
+```
+
+```xml
+  ...
+  <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
+  <field name="subject" type="string" indexed="true" stored="true"/>
+  <field name="term_en" type="string" multiValued="true" indexed="true" stored="true"/>
+  <field name="term_es" type="string" multiValued="true" indexed="true" stored="true"/>
+  ...
 ```
 * Add the new indexes to Solr:
 ```sh
-> bin/post -c [CORE_NAME] [NEW FILE].xml
+$ bin/post -c <CORE_NAME> <NEW FILE>.xml
 ```
 
 ## Supporting new languages
