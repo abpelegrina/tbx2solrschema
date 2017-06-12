@@ -15,10 +15,7 @@ The schema of the output file is:
  </add>
 ```
 
-IATE glossary download: http://iate.europa.eu/tbxPageDownload.do
-Solr XML schema: https://wiki.apache.org/solr/UpdateXmlMessages#XML_Messages_for_Updating_a_Solr_Index
-
-##Usage:
+## Usage
 * Create de XML file:
 ```
 java -jar xalan.jar  -IN [TBX-FILE] -XSL glossary.xsl -OUT [NEW FILE].xml
@@ -27,3 +24,19 @@ java -jar xalan.jar  -IN [TBX-FILE] -XSL glossary.xsl -OUT [NEW FILE].xml
 ```
 bin/post -c [CORE_NAME] [NEW FILE].xml
 ```
+
+## Supporting new languages
+To add new languages to the output file, you have to add a new selector to the match your desired language. For example, to extract french terms:
+
+```xslt
+<xsl:for-each select="langSet[@xml:lang='fr']">
+  <xsl:for-each select="tig">
+    <field name='term_fr'><xsl:value-of select="term"/></field>
+   </xsl:for-each>
+</xsl:for-each>
+```
+
+## More info and downloads
+* IATE glossary download: http://iate.europa.eu/tbxPageDownload.do
+* Solr XML schema: https://wiki.apache.org/solr/UpdateXmlMessages#XML_Messages_for_Updating_a_Solr_Index
+* Xalan: https://xml.apache.org/xalan-j/
