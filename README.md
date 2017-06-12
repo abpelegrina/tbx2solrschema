@@ -18,7 +18,7 @@ The schema of the output file is:
 IATE glossary download: http://iate.europa.eu/tbxPageDownload.do
 Solr XML schema: https://wiki.apache.org/solr/UpdateXmlMessages#XML_Messages_for_Updating_a_Solr_Index
 
-Usage:
+##Usage:
 * Create de XML file:
 ```
 java -jar xalan.jar  -IN [TBX-FILE] -XSL glossary.xsl -OUT [NEW FILE].xml
