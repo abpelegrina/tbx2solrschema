@@ -20,13 +20,13 @@ The schema of the output file is:
 ```
 
 ## Usage
-* Create de XML file:
-```shell
-java -jar xalan.jar  -IN [TBX-FILE] -XSL glossary.xsl -OUT [NEW FILE].xml
+* Create the XML file:
+```sh
+> java -jar xalan.jar  -IN [TBX-FILE] -XSL glossary.xsl -OUT [NEW FILE].xml
 ```
 * Add the new indexes to Solr:
-```shell
-bin/post -c [CORE_NAME] [NEW FILE].xml
+```sh
+> bin/post -c [CORE_NAME] [NEW FILE].xml
 ```
 
 ## Supporting new languages
