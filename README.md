@@ -12,16 +12,20 @@ The schema of the output file is:
       <field name="term_es">[Spanish term - MULTIVALUED]</field>
       <field name="term_en">[English term - MULTIVALUED]</field>
     </doc>
+    <doc>
+      ...
+    </doc>
+    ...
  </add>
 ```
 
 ## Usage
 * Create de XML file:
-```
+```shell
 java -jar xalan.jar  -IN [TBX-FILE] -XSL glossary.xsl -OUT [NEW FILE].xml
 ```
 * Add the new indexes to Solr:
-```
+```shell
 bin/post -c [CORE_NAME] [NEW FILE].xml
 ```
 
@@ -29,10 +33,14 @@ bin/post -c [CORE_NAME] [NEW FILE].xml
 To add new languages to the output file, you have to add a new selector that matches your desired language. For example, to extract french terms:
 
 ```xslt
-<xsl:for-each select="langSet[@xml:lang='fr']">
-  <xsl:for-each select="tig">
-    <field name='term_fr'><xsl:value-of select="term"/></field>
-   </xsl:for-each>
+<xsl:for-each select="langSet[@xml:lang='es']">
+  ...
+  <xsl:for-each select="langSet[@xml:lang='fr']">
+    <xsl:for-each select="tig">
+      <field name='term_fr'><xsl:value-of select="term"/></field>
+     </xsl:for-each>
+  </xsl:for-each>
+  ...
 </xsl:for-each>
 ```
 
